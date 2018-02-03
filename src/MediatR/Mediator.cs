@@ -67,7 +67,7 @@ namespace MediatR
                 throw new ArgumentNullException(nameof(notification));
             }
 
-            var notificationType = notification.GetType();
+            var notificationType = typeof(TNotification);
             var handler = _notificationHandlers.GetOrAdd(notificationType,
                 t => (NotificationHandlerWrapper)Activator.CreateInstance(typeof(NotificationHandlerWrapperImpl<>).MakeGenericType(notificationType)));
 
